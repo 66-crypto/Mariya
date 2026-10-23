@@ -1,584 +1,335 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO -->
-    <title>Дизайнер сайтов и карточек во Владивостоке | Веб-дизайнер Мария Сорокина</title>
-    <meta name="description" content="Запоминающийся и стильный дизайн для креативных индустрий. Лендинги, инфографика, афиши и реклама. Быстро, стильно и с маркетинговым подходом. Дизайнер Мария Сорокина.">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Дизайнер сайтов и карточек во Владивостоке | Веб-дизайнер Мария Сорокина">
-    <meta property="og:description" content="Создаю цепляющий дизайн сайтов за неделю. Лендинги, реклама, инфографика для креативного бизнеса.">
-    <meta property="og:type" content="website">
-    
-    <!-- Fonts (Soledago заменен на похожий каллиграфический шрифт с Google Fonts для работы без локальных файлов) -->
-    <link rel="preconnect" href="https://fonts.google.com/specimen/Comfortaa?script=Cyrl&preview.script=Cyrl">
-    <link rel="preconnect" href="https://fonts.google.com/specimen/Great+Vibes?script=Cyrl&preview.script=Cyrl" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
-
-    <style>
-        /* CSS Variables */
-        :root {
-            --bg-color: #F8F8FF;
-            --accent-color: #C9B7E7;
-            --text-dark: #1A1A1A;
-            --text-light: #555555;
-            --glass-bg: rgba(255, 255, 255, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.8);
-            --font-main: 'Manrope', sans-serif;
-            --font-display: 'Playfair Display', serif; /* Замена Soledago */
-        }
-
-        /* Reset & Base */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: var(--font-main);
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            /* Текстурный фон */
-            background-image: radial-gradient(var(--accent-color) 1px, transparent 1px);
-            background-size: 30px 30px;
-            background-attachment: fixed;
-        }
-
-        h1, h2, h3 {
-            font-weight: 600;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; margin-bottom: 2rem; }
-        p { font-size: 16px; margin-bottom: 1.5rem; color: var(--text-light); }
-
-        /* Glassmorphism Utilities */
-        .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
-        }
-
-        /* Layout */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            padding: 80px 0;
-        }
-
-        /* Typography */
-        .display-text {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 44px;
-            padding: 12px 32px;
-            background-color: var(--text-dark);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease;
-        }
-
-        .btn:active {
-            transform: scale(1.1); /* Микроанимация нажатия */
-        }
-        
-        .btn:hover {
-            background-color: #333;
-        }
-
-        /* Header / Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding-top: 100px;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 600;
-            max-width: 800px;
-        }
-
-        .hero-image-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            align-self: flex-end;
-            margin-top: 2rem;
-        }
-
-        .hero-img {
-            width: 100%;
-            border-radius: 24px;
-            object-fit: cover;
-            aspect-ratio: 3/4;
-            box-shadow: 0 20px 40px rgba(201, 183, 231, 0.4);
-        }
-
-        /* Decorative elements (Glassmorphism shapes) */
-        .deco-shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(40px);
-            z-index: 0;
-            background: var(--accent-color);
-            opacity: 0.6;
-        }
-        .shape-1 { width: 300px; height: 300px; top: -50px; right: -50px; }
-        .shape-2 { width: 200px; height: 200px; bottom: 10%; left: -50px; background: #e7dbf7; }
-
-        /* Section: About */
-        .about-grid {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: 1fr;
-        }
-        
-        .about-card {
-            padding: 2rem;
-            height: 100%;
-        }
-
-        .about-card h3 {
-            font-size: 1.5rem;
-            color: var(--text-dark);
-        }
-
-        /* Section: Works */
-        .works-grid {
-            display: grid;
-            gap: 1.5rem;
-            grid-template-columns: 1fr;
-        }
-
-        .work-item {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            aspect-ratio: 4/5;
-            display: block;
-            text-decoration: none;
-            group: work;
-        }
-
-        .work-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .work-item:hover .work-img {
-            transform: scale(1.05);
-        }
-
-        .work-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: #fff;
-        }
-
-        .work-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0;
-            color: #fff;
-        }
-
-        /* Section: Contacts / Form */
-        .contact-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .form-container {
-            padding: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--accent-color);
-            border-radius: 12px;
-            background: rgba(255,255,255,0.8);
-            font-family: var(--font-main);
-            font-size: 16px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .form-input:focus {
-            border-color: var(--text-dark);
-        }
-
-        select.form-input {
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231A1A1A%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px top 50%;
-            background-size: 10px auto;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 1.5rem;
-        }
-
-        .checkbox-input {
-            min-width: 20px;
-            min-height: 20px;
-            margin-top: 2px;
-            accent-color: var(--text-dark);
-            cursor: pointer;
-        }
-
-        .checkbox-label {
-            font-size: 12px;
-            color: var(--text-light);
-            line-height: 1.4;
-        }
-
-        .checkbox-label a {
-            color: var(--text-dark);
-            text-decoration: underline;
-        }
-
-        .success-message {
-            display: none;
-            padding: 20px;
-            background: #d4edda;
-            color: #155724;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 600;
-            margin-top: 20px;
-        }
-
-        /* Footer */
-        footer {
-            padding: 40px 0;
-            text-align: left;
-            border-top: 1px solid var(--accent-color);
-        }
-        footer p {
-            margin-bottom: 0.5rem;
-        }
-        .social-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            margin-right: 15px;
-            font-weight: 600;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s;
-        }
-        .social-links a:hover {
-            border-color: var(--text-dark);
-        }
-
-        /* Desktop Styles */
-        @media (min-width: 768px) {
-            h1 { font-size: 4rem; }
-            h2 { font-size: 2.5rem; }
-            .hero-title { font-size: 4.5rem; }
-            
-            .hero {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-            .hero-content {
-                width: 60%;
-            }
-            .hero-image-wrapper {
-                width: 35%;
-                margin-top: 0;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .works-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .contact-wrapper {
-                flex-direction: row;
-                align-items: center;
-            }
-            .contact-info {
-                width: 40%;
-            }
-            .form-container {
-                width: 60%;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .works-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        /* Accessibility: prefers-reduced-motion */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-            .fade-in {
-                opacity: 1;
-                transform: none;
-            }
-            .btn:active {
-                transform: none;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f1ef">
+  <title>Дизайнер сайтов и карточек во Владивостоке | Веб-дизайнер Мария Сорокина</title>
+  <meta name="description" content="Мария Сорокина — веб-дизайнер во Владивостоке. Разработка лендингов, визуальных концепций и карточек для маркетплейсов.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Мария Сорокина — веб-дизайнер">
+  <meta property="og:description" content="Сайты и визуальные решения с характером. Владивосток и онлайн.">
+  <meta property="og:locale" content="ru_RU">
+  <style>
+    :root {
+      --milk: #f5f1ef;
+      --paper: #fffdfb;
+      --ink: #211c2b;
+      --muted: #706a79;
+      --purple: #873cff;
+      --violet: #b17aff;
+      --pink: #f17bc8;
+      --line: rgba(135,60,255,.24);
+      --glass: rgba(255,255,255,.54);
+      --shadow: 0 18px 50px rgba(55, 28, 85, .09);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--milk); color: var(--ink);
+      font-family: "Nauryz", "Manrope", "Segoe UI", sans-serif;
+      font-size: 16px; line-height: 1.55; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    button, .button { min-height: 48px; }
+    .wrap { width: min(100% - 36px, 1080px); margin-inline: auto; }
+    .topbar {
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding: 19px 0; border-bottom: 1px solid var(--line);
+    }
+    .brand { font-weight: 800; letter-spacing: -.06em; font-size: 19px; }
+    .brand span { color: var(--purple); }
+    .top-note { color: var(--muted); font-size: 12px; text-align: right; }
+    .menu { display:flex; gap:18px; align-items:center; }
+    .menu a { font-size: 13px; color: var(--muted); }
+    .menu a:hover { color: var(--purple); }
+    .hero { padding: 54px 0 45px; position:relative; }
+    .eyebrow { color: var(--purple); font-size: 12px; text-transform: uppercase; letter-spacing: .14em; font-weight: 800; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 800px; margin: 15px 0 20px;
+      font-family: "Nauryz", "Georgia", serif; font-weight: 500;
+      letter-spacing: -.065em; line-height: .99; font-size: clamp(42px, 10vw, 88px);
+    }
+    h1 em { color: var(--purple); font-weight: 400; }
+    .hero-grid { display:grid; grid-template-columns: 1fr; gap: 26px; align-items:end; }
+    .intro { max-width: 450px; color: var(--muted); font-size: 17px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+    .button {
+      border: 1px solid transparent; border-radius: 999px; padding: 12px 20px;
+      display:inline-flex; align-items:center; justify-content:center; gap:9px;
+      cursor:pointer; font-weight:700; font-size:14px; transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .button:active, .button.is-pressed { transform: scale(1.055); }
+    .button-primary { background: linear-gradient(110deg, var(--pink), #c87aff 70%, #9b67ff); color:#24152f; box-shadow: 0 9px 25px rgba(195,105,236,.22); }
+    .button-ghost { border-color: var(--line); background: rgba(255,255,255,.42); }
+    .hero-art {
+      min-height: 240px; border-radius: 26px; position:relative; overflow:hidden;
+      background: radial-gradient(ellipse at 22% 25%, #f7b5e3 0, transparent 35%),
+        radial-gradient(ellipse at 78% 65%, #a66aff 0, transparent 40%),
+        linear-gradient(135deg, #f5d5ef, #c69bff 48%, #4a087e);
+      border:1px solid rgba(255,255,255,.75); box-shadow:var(--shadow);
+    }
+    .hero-art:before, .hero-art:after {
+      content:""; position:absolute; border:1px solid rgba(255,255,255,.6);
+      border-radius:48% 52% 60% 40%; transform:rotate(-25deg);
+    }
+    .hero-art:before { width:210px; height:290px; right:15%; top:-25px; box-shadow:0 0 0 15px rgba(255,255,255,.08),0 0 0 32px rgba(255,255,255,.06); }
+    .hero-art:after { width:110px; height:170px; right:34%; top:40px; background:rgba(255,255,255,.13); backdrop-filter:blur(8px); }
+    .art-label { position:absolute; bottom:18px; left:18px; z-index:1; color:white; font-family:Georgia,serif; font-size:25px; line-height:1.1; max-width:180px; }
+    section { padding: 48px 0; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:24px; }
+    h2 { font-family:"Nauryz",Georgia,serif; font-size:clamp(31px,7vw,50px); line-height:1.05; letter-spacing:-.05em; font-weight:500; margin-bottom:0; }
+    .section-note { color:var(--muted); max-width:280px; font-size:14px; margin-bottom:2px; }
+    .glass {
+      background:var(--glass); border:1px solid rgba(255,255,255,.85);
+      box-shadow:var(--shadow); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+    }
+    .services { display:grid; grid-template-columns:1fr; gap:12px; }
+    .service { padding:22px; border-radius:var(--radius); position:relative; overflow:hidden; min-height:190px; }
+    .service-number { color:var(--purple); font-size:12px; letter-spacing:.1em; }
+    .service h3 { font-size:22px; letter-spacing:-.04em; margin:25px 0 8px; }
+    .service p { color:var(--muted); margin-bottom:0; max-width:330px; }
+    .service:after { content:""; width:100px; height:100px; position:absolute; right:-36px; top:-38px; border-radius:50%; background:rgba(177,122,255,.16); }
+    .work-list { display:grid; gap:16px; }
+    .work-card { border-radius:var(--radius); padding:15px; display:grid; grid-template-columns:1fr; gap:18px; }
+    .work-visual { min-height:210px; border-radius:16px; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:18px; }
+    .work-visual.purple { background:linear-gradient(135deg,#e7c5ff,#8d3cff 65%,#401066); }
+    .work-visual.peach { background:linear-gradient(140deg,#f7d8cb,#d69b8d); }
+    .work-visual.blue { background:linear-gradient(135deg,#d5e7f8,#8ab5db); }
+    .mockup { width:min(76%,240px); aspect-ratio: .72; border:1px solid rgba(255,255,255,.75); border-radius:9px; background:rgba(255,255,255,.78); padding:15px; box-shadow:0 14px 35px rgba(28,12,48,.2); transform:rotate(-3deg); }
+    .mockup .bar { width:40%; height:5px; border-radius:8px; background:var(--purple); margin-bottom:16px; }
+    .mockup .big { font-family:Georgia,serif; font-size:clamp(20px,5vw,32px); line-height:1; margin-bottom:12px; letter-spacing:-.05em; }
+    .mockup .line { height:5px; background:rgba(39,24,52,.14); margin:7px 0; border-radius:5px; }
+    .mockup .line.short { width:60%; }
+    .mockup .block { height:58px; margin-top:14px; border-radius:7px; background:linear-gradient(130deg,#ef9bd8,#a978ff); }
+    .work-copy { padding:7px 4px 5px; }
+    .work-copy h3 { font-size:23px; margin:10px 0; letter-spacing:-.04em; }
+    .work-copy p { color:var(--muted); margin-bottom:15px; }
+    .tag { display:inline-block; font-size:12px; color:#6f31bc; background:#eee1ff; border-radius:99px; padding:6px 10px; margin:0 5px 5px 0; }
+    .about-grid { display:grid; grid-template-columns:1fr; gap:22px; }
+    .about-copy { font-size:18px; max-width:620px; }
+    .about-copy p { color:var(--muted); }
+    .principles { display:grid; grid-template-columns:1fr; gap:10px; }
+    .principle { padding:18px; border-radius:16px; }
+    .principle strong { display:block; font-size:17px; margin-bottom:4px; }
+    .principle span { color:var(--muted); font-size:14px; }
+    .contact { padding:25px; border-radius:26px; background:linear-gradient(130deg,rgba(255,255,255,.83),rgba(226,204,255,.62)); }
+    .contact-grid { display:grid; grid-template-columns:1fr; gap:28px; }
+    .contact-copy p { color:var(--muted); max-width:360px; margin-top:14px; }
+    form { display:grid; gap:14px; }
+    label { display:grid; gap:7px; font-size:14px; font-weight:700; }
+    input, select {
+      width:100%; min-height:50px; border-radius:12px; border:1px solid rgba(75,48,98,.18);
+      background:rgba(255,255,255,.78); color:var(--ink); padding:12px 14px; outline:none;
+    }
+    input:focus, select:focus { border-color:var(--purple); box-shadow:0 0 0 3px rgba(135,60,255,.12); }
+    .consent { display:flex; align-items:flex-start; gap:10px; font-weight:400; font-size:13px; color:var(--muted); line-height:1.45; }
+    .consent input { width:20px; min-width:20px; height:20px; min-height:20px; margin:1px 0 0; accent-color:var(--purple); }
+    .consent a { color:var(--purple); text-decoration:underline; text-underline-offset:3px; }
+    .form-message { display:none; padding:14px; border-radius:12px; background:#efe3ff; color:#4d237a; }
+    .form-message.show { display:block; }
+    footer { padding:25px 0 32px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+    .footer-row { display:flex; flex-direction:column; gap:12px; }
+    .footer-links { display:flex; gap:16px; flex-wrap:wrap; }
+    .footer-links a { text-decoration:underline; text-underline-offset:3px; }
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    @media (min-width:650px) {
+      .hero { padding:76px 0 60px; }
+      .hero-grid { grid-template-columns:1.1fr .9fr; gap:35px; }
+      .hero-art { min-height:350px; }
+      .services { grid-template-columns:repeat(2,1fr); }
+      .work-card { grid-template-columns:.9fr 1.1fr; align-items:center; padding:18px; }
+      .work-visual { min-height:280px; }
+      .about-grid { grid-template-columns:1.1fr .9fr; }
+      .principles { grid-template-columns:1fr 1fr; }
+      .contact-grid { grid-template-columns:.85fr 1.15fr; gap:35px; }
+      .contact { padding:38px; }
+      .footer-row { flex-direction:row; justify-content:space-between; align-items:center; }
+    }
+    @media (min-width:850px) {
+      .services { grid-template-columns:repeat(3,1fr); }
+      .work-list { gap:20px; }
+      .work-card:nth-child(even) .work-visual { order:2; }
+      .work-card:nth-child(even) .work-copy { order:1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+      .reveal { opacity:1; transform:none; }
+    }
+  </style>
 </head>
 <body>
+  <header class="wrap topbar">
+    <a class="brand" href="#top" aria-label="Мария Сорокина — на главную">maria<span>.</span>sork</a>
+    <nav class="menu" aria-label="Основная навигация">
+      <a href="#work">Работы</a>
+      <a href="#about">Обо мне</a>
+      <a href="#contact">Контакт</a>
+    </nav>
+    <div class="top-note">Владивосток<br>и онлайн</div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero container">
-        <div class="deco-shape shape-1"></div>
-        <div class="deco-shape shape-2"></div>
-        
-        <div class="hero-content fade-in">
-            <h1 class="hero-title">Цепляющий дизайн сайта за неделю</h1>
-            <p>Помогаю креативным индустриям продавать и запоминаться. Создаю стильные лендинги, инфографику и афиши, которые выделяют вас из толпы.</p>
-            <div>
-                <a href="#contact" class="btn">Обсудить проект</a>
-            </div>
+  <main id="top">
+    <section class="wrap hero">
+      <div class="eyebrow">Веб-дизайн · визуальные истории</div>
+      <h1>Дизайн, который<br>говорит <em>за вас.</em></h1>
+      <div class="hero-grid">
+        <div>
+          <p class="intro">Создаю сайты и визуальные решения с характером: чтобы было красиво, понятно и с ощущением «это именно мы».</p>
+          <div class="actions">
+            <a class="button button-primary pressable" href="#contact">Обсудить проект <span aria-hidden="true">↗</span></a>
+            <a class="button button-ghost pressable" href="#work">Смотреть работы</a>
+          </div>
         </div>
-        
-        <div class="hero-image-wrapper fade-in">
-            <!-- Замените src на реальное фото Марии -->
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" alt="Мария Сорокина - веб-дизайнер" class="hero-img">
+        <div class="hero-art" role="img" aria-label="Абстрактная композиция в фиолетовых оттенках с мягкими стеклянными формами">
+          <div class="art-label">be yourself,<br>be crazy</div>
         </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="container">
-        <h2 class="fade-in">Обо мне</h2>
-        <div class="about-grid">
-            <div class="about-card glass fade-in">
-                <h3>Визуал и смыслы</h3>
-                <p>Моя специализация — передача эмоций через контент. У меня хорошая визуальная насмотренность и необычное видение. Я не просто рисую красивые картинки, а упаковываю идею так, чтобы это выглядело круто и вызывало эмоции.</p>
-            </div>
-            <div class="about-card glass fade-in">
-                <h3>Маркетинг и результат</h3>
-                <p>Разбираюсь в маркетинге и привлечении клиентов. Создаю разноплановый дизайн: от инфографики и дашбордов до афиш, рекламы и лендингов. Быстро, стильно и по приемлемой цене для начинающего бизнеса.</p>
-            </div>
-        </div>
+    <section class="wrap reveal" id="services">
+      <div class="section-head">
+        <h2>Что я делаю</h2>
+        <p class="section-note">От первой идеи до визуальной системы, которую легко узнать.</p>
+      </div>
+      <div class="services">
+        <article class="service glass"><span class="service-number">01 / WEB</span><h3>Сайты и лендинги</h3><p>Структура, визуальная концепция и дизайн страниц под вашу задачу.</p></article>
+        <article class="service glass"><span class="service-number">02 / MARKETPLACE</span><h3>Карточки товара</h3><p>Инфографика, которая помогает быстро понять преимущества продукта.</p></article>
+        <article class="service glass"><span class="service-number">03 / VISUAL</span><h3>Визуальные концепции</h3><p>Атмосфера, типографика и графические решения для проектов и брендов.</p></article>
+      </div>
     </section>
 
-    <!-- Works Section -->
-    <section id="works" class="container">
-        <h2 class="fade-in">Мои работы</h2>
-        <div class="works-grid">
-            <!-- Работа 1 -->
-            <a href="#" class="work-item fade-in">
-                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=800&auto=format&fit=crop" alt="Разработка лендинга" class="work-img">
-                <div class="work-overlay">
-                    <h3 class="work-title">Лендинги</h3>
-                </div>
-            </a>
-            <!-- Работа 2 -->
-            <a href="#" class="work-item fade-in">
-                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop" alt="Рекламные креативы" class="work-img">
-                <div class="work-overlay">
-                    <h3 class="work-title">Реклама</h3>
-                </div>
-            </a>
-            <!-- Работа 3 -->
-            <a href="#" class="work-item fade-in">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Инфографика для маркетплейсов" class="work-img">
-                <div class="work-overlay">
-                    <h3 class="work-title">Инфографика</h3>
-                </div>
-            </a>
-            <!-- Работа 4 -->
-            <a href="#" class="work-item fade-in">
-                <img src="https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=800&auto=format&fit=crop" alt="Афиши и билеты" class="work-img">
-                <div class="work-overlay">
-                    <h3 class="work-title">Афиши и билеты</h3>
-                </div>
-            </a>
-        </div>
+    <section class="wrap reveal" id="work">
+      <div class="section-head">
+        <h2>Мои работы</h2>
+        <p class="section-note">Несколько направлений, в которых встречаются дизайн и сторителлинг.</p>
+      </div>
+      <div class="work-list">
+        <article class="work-card glass">
+          <div class="work-visual purple" role="img" aria-label="Макет информационного гайда в фиолетовой цветовой гамме">
+            <div class="mockup"><div class="bar"></div><div class="big">ГАЙД</div><div class="line"></div><div class="line short"></div><div class="block"></div><div class="line"></div><div class="line short"></div></div>
+          </div>
+          <div class="work-copy"><span class="tag">Многостраничный дизайн</span><h3>Гайд для автошколы</h3><p>Информационный материал для абитуриентов: визуальная иерархия, понятная навигация и выразительная подача.</p><span class="tag">Figma</span><span class="tag">Типографика</span></div>
+        </article>
+        <article class="work-card glass">
+          <div class="work-visual peach" role="img" aria-label="Макет рекламного креатива с нежной персиковой палитрой">
+            <div class="mockup"><div class="bar" style="background:#a66b62"></div><div class="big">50%</div><div class="line"></div><div class="line short"></div><div class="block" style="background:linear-gradient(130deg,#f5d5c8,#c68d80)"></div></div>
+          </div>
+          <div class="work-copy"><span class="tag">Рекламный креатив</span><h3>Визуал для сторис</h3><p>Акцент на продукте, коротком сообщении и цельной композиции для вертикального формата.</p><span class="tag">Digital</span><span class="tag">Композиция</span></div>
+        </article>
+        <article class="work-card glass">
+          <div class="work-visual blue" role="img" aria-label="Макет карточки товара в голубых и розовых оттенках">
+            <div class="mockup"><div class="bar" style="background:#5a8ab8"></div><div class="big">CARE<br>GUIDE</div><div class="line"></div><div class="line short"></div><div class="block" style="background:linear-gradient(130deg,#f5b8dc,#9cc9e9)"></div></div>
+          </div>
+          <div class="work-copy"><span class="tag">Маркетплейс</span><h3>Инфографика для товара</h3><p>Серия карточек с единым стилем: основные свойства, преимущества и порядок использования.</p><span class="tag">Инфографика</span><span class="tag">Серия макетов</span></div>
+        </article>
+      </div>
+      <p class="section-note" style="margin-top:15px">Визуалы в этом шаблоне — заглушки. Замени их своими изображениями, когда подготовишь файлы портфолио.</p>
     </section>
 
-    <!-- Contacts Section -->
-    <section id="contact" class="container">
-        <div class="contact-wrapper">
-            <div class="contact-info fade-in">
-                <h2>Давайте создадим что-то крутое</h2>
-                <p>Оставьте заявку, и я свяжусь с вами для обсуждения деталей. Работаю быстро и качественно.</p>
-                <p><strong>Стоимость проектов:</strong> [ЗАМЕНИТЬ] от 10 000 руб.</p>
-                <div class="social-links">
-                    <a href="https://t.me/masha_sork" target="_blank" rel="noopener">Telegram</a>
-                    <a href="mailto:masha_sork@mail.ru">Email</a>
-                </div>
-            </div>
-
-            <div class="form-container glass fade-in">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Ваше имя</label>
-                        <input type="text" id="name" class="form-input" required placeholder="Иван Иванов">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone" class="form-label">Телефон или Telegram</label>
-                        <input type="text" id="phone" class="form-input" required placeholder="+7 (999) 999-99-99">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="service" class="form-label">Выберите услугу</label>
-                        <select id="service" class="form-input" required>
-                            <option value="" disabled selected>Выберите из списка</option>
-                            <option value="landing">Лендинг</option>
-                            <option value="ads">Рекламные креативы</option>
-                            <option value="infographics">Инфографика</option>
-                            <option value="posters">Афиши и билеты</option>
-                            <option value="other">Другое</option>
-                        </select>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="consent" class="checkbox-input" required>
-                        <label for="consent" class="checkbox-label">
-                            Я согласен на обработку персональных данных и принимаю условия <a href="#" target="_blank">политики конфиденциальности</a>.
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
-                </form>
-                <div id="successMessage" class="success-message">
-                    Спасибо! Ваша заявка отправлена. Я свяжусь с вами в ближайшее время.
-                </div>
-            </div>
+    <section class="wrap reveal" id="about">
+      <div class="section-head"><h2>Обо мне</h2></div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>Я Мария Сорокина — дизайнер, которому важны не только форма и цвет, но и смысл за ними.</p>
+          <p>Люблю выразительную типографику, нестандартные визуальные ходы и решения, в которых эстетика работает на задачу. Каждый проект собираю вокруг его характера, а не по одному шаблону.</p>
         </div>
+        <div class="principles">
+          <div class="principle glass"><strong>Сначала смысл</strong><span>Понимаем задачу, прежде чем украшать.</span></div>
+          <div class="principle glass"><strong>Визуальный характер</strong><span>Собираем узнаваемую атмосферу.</span></div>
+          <div class="principle glass"><strong>Понятная структура</strong><span>Красота не мешает пользоваться.</span></div>
+          <div class="principle glass"><strong>Внимание к деталям</strong><span>Типографика, ритм и аккуратность.</span></div>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="container">
-        <p>&copy; 2024 Мария Сорокина. Дизайнер для креативных индустрий.</p>
-        <p>Владивосток</p>
-    </footer>
+    <section class="wrap reveal" id="contact">
+      <div class="contact">
+        <div class="contact-grid">
+          <div class="contact-copy">
+            <div class="eyebrow">Есть идея?</div>
+            <h2 style="margin-top:12px">Давайте<br>обсудим.</h2>
+            <p>Расскажите немного о задаче — я свяжусь с вами, чтобы уточнить детали и следующий шаг.</p>
+            <p><strong>Владивосток · онлайн</strong></p>
+          </div>
+          <div>
+            <form id="contact-form">
+              <label for="name">Имя
+                <input id="name" name="name" autocomplete="name" placeholder="Как к вам обращаться" required>
+              </label>
+              <label for="phone">Телефон
+                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 ___ ___-__-__" required>
+              </label>
+              <label for="service">Какая услуга нужна?
+                <select id="service" name="service" required>
+                  <option value="" selected disabled>Выберите услугу</option>
+                  <option>Сайт или лендинг</option>
+                  <option>Карточки товара</option>
+                  <option>Визуальная концепция</option>
+                  <option>Другое / пока не знаю</option>
+                </select>
+              </label>
+              <label class="consent" for="consent">
+                <input id="consent" name="consent" type="checkbox" required>
+                <span>Я согласен(на) на обработку персональных данных согласно <a href="privacy.html" target="_blank" rel="noopener">политике конфиденциальности</a>.</span>
+              </label>
+              <button class="button button-primary pressable" type="submit">Отправить заявку <span aria-hidden="true">↗</span></button>
+              <div class="form-message" id="form-message" role="status" aria-live="polite">Спасибо! Форма прошла проверку. Чтобы заявка действительно пришла вам, подключите форму к сервису приёма заявок.</div>
+              <p style="font-size:12px;color:var(--muted);margin:0">Сейчас форма работает в демонстрационном режиме и не отправляет данные на сервер.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <!-- JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Scroll Animation (Intersection Observer)
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
+  <footer>
+    <div class="wrap footer-row">
+      <div>© <span id="year"></span> Мария Сорокина · Веб-дизайн</div>
+      <div class="footer-links"><a href="privacy.html">Политика конфиденциальности</a><a href="#top">Наверх ↑</a></div>
+    </div>
+  </footer>
+  <script>
+    // Микроанимация 1: короткое увеличение кнопки при нажатии.
+    document.querySelectorAll('.pressable').forEach((button) => {
+      button.addEventListener('click', () => {
+        button.classList.add('is-pressed');
+        window.setTimeout(() => button.classList.remove('is-pressed'), 180);
+      });
+    });
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(el => observer.observe(el));
-
-            // Form Handling
-            const form = document.getElementById('contactForm');
-            const successMessage = document.getElementById('successMessage');
-
-            form.addEventListener('submit', (e) => {
-                e.preventDefault(); // Остановка перезагрузки страницы
-
-                // Простейшая валидация (встроенная в HTML5 уже сработала, т.к. поля required)
-                if(form.checkValidity()) {
-                    // Здесь в будущем можно добавить логику отправки данных (fetch запрос)
-                    
-                    // Скрываем форму и показываем сообщение
-                    form.style.display = 'none';
-                    successMessage.style.display = 'block';
-                    
-                    // Очистка формы (опционально)
-                    form.reset();
-                }
-            });
+    // Микроанимация 2: появление блоков при прокрутке. Уважает prefers-reduced-motion.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealItems = document.querySelectorAll('.reveal');
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      revealItems.forEach((item) => item.classList.add('visible'));
+    } else {
+      const observer = new IntersectionObserver((entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            currentObserver.unobserve(entry.target);
+          }
         });
-    </script>
+      }, { threshold: 0.12 });
+      revealItems.forEach((item) => observer.observe(item));
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Демонстрационный режим: не отправляем персональные данные без подключённого сервиса.
+    document.getElementById('contact-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+      document.getElementById('form-message').classList.add('show');
+      form.reset();
+    });
+  </script>
 </body>
 </html>
